@@ -1,27 +1,78 @@
-# React + TypeScript + Vite
+# **React Guided Learning Activity: Theme Switcher & useReducer**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Title:** Implementing a Theme Switcher with useContext & State Management with useReducer
 
-Currently, two official plugins are available:
+**Objective:** Learn how to use the React Context API (`useContext`) for **global state management** (theme switching) and `useReducer` for **managing complex state** (task manager).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## **Tools:**
+* GitHub Classroom
+* GitHub Codespaces (or a local development environment with Node.js and a suitable IDE like VS Code)
+* Vite
+* React
+* TypeScript
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## **Color Palette**
+Use these colors for styling:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```
+Light Theme
+===========
+Background: #FFFFFF
+Text: #000000
+Button: #1E90FF
+
+Dark Theme
+===========
+Background: #242629
+Text: #FFFFFF
+Button: #85D1B0
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## **Getting Started**
+
+```bash
+npm install
+npm run dev
+```
+
+The app runs at `http://localhost:5173/`.
+
+---
+
+## **Project Structure**
+
+```
+src/
+├── constants/
+│   └── theme.ts          # Light/dark theme constants
+├── context/
+│   └── ThemeContext.tsx   # Theme context, provider, and custom hook
+├── reducers/
+│   └── taskReducer.ts    # Typed reducer for task management
+├── components/
+│   ├── Navbar.tsx         # Navbar with theme toggle button
+│   ├── Navbar.module.css
+│   ├── TaskManager.tsx    # Task add/remove using useReducer
+│   └── TaskManager.module.css
+├── App.tsx                # Root component wrapped with ThemeProvider
+└── main.tsx
+```
+
+---
+
+## **Part 1: Theme Switcher with useContext**
+
+- `constants/theme.ts` exports `LIGHT_THEME` and `DARK_THEME` string constants.
+- `context/ThemeContext.tsx` creates a typed context, a `ThemeProvider` component, and a `useTheme` custom hook.
+- `components/Navbar.tsx` consumes `useTheme` to display a button that toggles between light and dark mode.
+
+## **Part 2: Task Manager with useReducer**
+
+- `reducers/taskReducer.ts` defines typed `Task`, `State`, and `Action` types with `add` and `remove` cases.
+- `components/TaskManager.tsx` uses `useReducer` with `taskReducer` to add and remove tasks, and applies theme styles via `useTheme`.
